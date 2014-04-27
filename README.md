@@ -5,7 +5,7 @@ GSpreadsheetDev
 </p>
 
 <h4>Usage</h4>
-<p>Update appKeys in App.Config with your Google account info and Google worksheet informationt. Run or debug app in Visual Studio or MonoDevelop.</p>
+<p>Update appKeys in App.Config with your Google account info and Google worksheet information. Run or debug app in Visual Studio or MonoDevelop. Requires ASP.NET 4</p>
 <pre><code>
 &lt;!-- google account --&gt;
 &lt;add key="gAccount" value=""/&gt;
