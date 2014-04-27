@@ -19,6 +19,8 @@ namespace GSpreadsheetDev
         public static string password = ConfigurationSettings.AppSettings["gPassword"];
         public static string sheetService = ConfigurationSettings.AppSettings["sheetService"];
         public static string sheetTitle = ConfigurationSettings.AppSettings["sheetTitle"];
+        public static int worksheetNumber = Int32.Parse(ConfigurationSettings.AppSettings["worksheetNumber"].ToString());
+        public static int parcelColumnNumber = Int32.Parse(ConfigurationSettings.AppSettings["parcelColumnNumber"].ToString());
 
         static void Main()
         {
@@ -41,7 +43,7 @@ namespace GSpreadsheetDev
             WorksheetFeed wsFeeds = spreadsheet.Worksheets;
 
             // target worksheet
-            WorksheetEntry worksheet = (WorksheetEntry)wsFeeds.Entries[2];
+            WorksheetEntry worksheet = (WorksheetEntry)wsFeeds.Entries[worksheetNumber];
 
             // need request url for the list feed
             AtomLink listFeedLink = worksheet.Links.FindService(GDataSpreadsheetsNameTable.ListRel, null);
@@ -62,7 +64,7 @@ namespace GSpreadsheetDev
             foreach (ListEntry entry in parcelList.Entries)
             {
                 i++;
-                PropertyInfo property = new PropertyInformation().GetPropertyInfo("", entry.Elements[1].Value.ToString());
+                PropertyInfo property = new PropertyInformation().GetPropertyInfo("", entry.Elements[parcelColumnNumber].Value.ToString());
                 Parcel parcel = new Parcel(property, memberList);
 
                 Console.WriteLine("{0} => {1}, {2}", i,  parcel.Number, parcel.IsMember);
